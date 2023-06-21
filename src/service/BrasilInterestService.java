@@ -1,7 +1,5 @@
 package service;
 
-import java.security.InvalidParameterException;
-
 public class BrasilInterestService implements InterestSrevice {
 	private Double interestRate;
 
@@ -10,16 +8,12 @@ public class BrasilInterestService implements InterestSrevice {
 		this.interestRate = interestRate;
 	}
 
+	// Não pode colocar esse method como default, pq esse metodo depende dos
+	// atributos
+	// aramzenada no serviço. E não pode colocar atributos armazenadas na interface.
 	@Override
 	public Double getInterestRate() {
 		return interestRate;
 	}
 
-	@Override
-	public double payment(double amount, int month) {
-		if (month < 1) {
-			throw new InvalidParameterException("Months must greater than zero");
-		}
-		return amount * Math.pow(1.0 + interestRate / 100, month);
-	}
 }
